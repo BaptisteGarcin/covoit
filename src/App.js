@@ -9,6 +9,9 @@ import DrivingHistory from "./DrivingHistory";
 import Passengers from "./Passengers"
 import './global.scss'
 import DatePicker from "./DatePicker";
+import FloatingButton from "./FloatingButton";
+import PageNewCovoit from "./PageNewCovoit";
+import PageHistory from "./PageHistory";
 
 
 // Configure Firebase.
@@ -77,7 +80,8 @@ function addMockDataToFirebase(nbMocks, subs) {
 
 class App extends React.Component {
     state = {
-        isSignedIn: false
+        isSignedIn: false,
+        isNewCovoit: false
     };
 
     componentDidMount() {
@@ -104,19 +108,31 @@ class App extends React.Component {
             })
     }
 
+    handleClick(){
+        this.setState({isNewCovoit : true})
+    }
+
     render() {
         return (
             <div style={{overflow: 'auto'}}>
-                <h1>Covoit App</h1>
+                <div style={{display: 'inline-block', width:'100%'}}>
+                    <h1>Covoit App</h1>
+                    <button
+                        style={{float: 'right'}}
+                        onClick={() => firebase.auth().signOut()}
+                    >
+                        Sign-out
+                    </button>
+                </div>
+                <br/> <br/>
                 {this.state.isSignedIn ? (
                     <div>
-                        You are signed In!
-                        <Passengers name={"test"}/>
-                        <DatePicker />
-                        <button onClick={() => this.save()}>Valider</button>
-                        <br/><br/>
-                        <DrivingHistory />
-                        <br/><br/><button onClick={() => firebase.auth().signOut()}>Sign-out</button>
+                        {this.state.isNewCovoit ?
+                            <PageNewCovoit />
+                            :
+                            <PageHistory />
+                        }
+                        <FloatingButton click={() => this.handleClick()}/>
                     </div>
                 ) : (
                     <div>

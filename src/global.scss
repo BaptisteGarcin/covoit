@@ -7,6 +7,21 @@ body {
 /* These styles disable body scrolling if you are using <ScrollView> */
 body {
   overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  width: 90%;
+  margin: auto;
+}
+
+*,
+*::before,
+*::after{
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
 }
 
 /* These styles make the root element full-height */

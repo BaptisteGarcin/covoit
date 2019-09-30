@@ -117,12 +117,13 @@ class App extends React.Component {
             <div style={{overflow: 'auto'}}>
                 <div style={{display: 'inline-block', width:'100%'}}>
                     <h1>Covoit App</h1>
+                    {this.state.isNewCovoit &&
                     <button
                         style={{float: 'right'}}
                         onClick={() => firebase.auth().signOut()}
                     >
                         Sign-out
-                    </button>
+                    </button>}
                 </div>
                 <br/> <br/>
                 {this.state.isSignedIn ? (

@@ -2,6 +2,15 @@ import React from "react";
 import './DrivingHistory.scss';
 
 export default class DrivingHistory extends React.Component {
+    state = {
+        covoits: []
+    };
+
+
+    componentDidMount() {
+        this.props.covoits.then(covoits => this.setState({covoits: covoits}))
+    }
+
     render() {
         return (
             <table>
@@ -11,16 +20,13 @@ export default class DrivingHistory extends React.Component {
                         <th>Passengers</th>
                         <th>Date</th>
                     </tr>
-                    <tr>
-                        <td>Baptiste Garcin</td>
-                        <td>[Lucille, Spencer, Fedy, Flo]</td>
-                        <td>Jeudi 23 Septembre</td>
-                    </tr>
-                    <tr>
-                        <td>Baptiste Garcin</td>
-                        <td>[Lucille, Spencer, Fedy, Flo]</td>
-                        <td>Jeudi 23 Septembre</td>
-                    </tr>
+                    {this.state.covoits.map((covoit, index) => {
+                      return <tr>
+                          <td>Baptiste Garcin</td>
+                          <td>{covoit.passengers}</td>
+                          <td>{covoit.date}</td>
+                      </tr>
+                    })}
                 </tbody>
             </table>
         );

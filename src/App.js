@@ -82,7 +82,8 @@ class App extends React.Component {
     state = {
         isSignedIn: false,
         isNewCovoit: false,
-        selectedPassengers: []
+        selectedPassengers: [],
+        date: undefined
     };
 
     componentDidMount() {
@@ -100,17 +101,37 @@ class App extends React.Component {
     }
 
     save(){
-        console.log("is saving...");
         //Send data to firebase
         db.collection("covoits")
             .add({
-                passengers: ["Lucille", "Fedy"],
-                date: "23/09/2018"
-            })
+                passengers: this.state.selectedPassengers,
+                date: this.state.date
+            }).then(() => {
+                this.setState({isNewCovoit: false})
+            }).catch(err => {
+                console.error('Error adding document', err);
+            });
+    }
+
+    getAllCovoits() {
+        const covoits = db.collection('covoits').get()
+            .then(snapshot => {
+                return snapshot.docs.map(doc => {
+                    return doc.data();
+                });
+            }).catch(err => {
+                console.error('Error getting documents', err);
+            });
+
+        return covoits
     }
 
     setPassengers(selectedPassengers){
-        this.setState({selectedPassengers: selectedPassengers.keys()})
+        this.setState({selectedPassengers: [...selectedPassengers.keys()]})
+    }
+
+    setDate(date) {
+        this.setState({date: date})
     }
 
     handleClick(){
@@ -138,13 +159,16 @@ class App extends React.Component {
                 {this.state.isSignedIn ? (
                     <div>
                         {this.state.isNewCovoit ?
-                            <PageNewCovoit onChange={(data) => this.setPassengers(data)}/>
+                            <PageNewCovoit
+                                setPassengers={(data) => this.setPassengers(data)}
+                                setDate={(data) => this.setDate(data)}
+                            />
                             :
-                            <PageHistory />
+                            <PageHistory covoits={this.getAllCovoits()}/>
                         }
                         <FloatingButton
                             text={`${this.state.isNewCovoit ? "Valider" : "+"} `}
-                            onClick={(data) => this.handleClick(data)}
+                            onClick={(data) => {this.handleClick(data)}}
                         />
                     </div>
                 ) : (

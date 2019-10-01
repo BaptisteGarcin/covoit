@@ -22,7 +22,7 @@ export default class DrivingHistory extends React.Component {
                     </tr>
                     {this.state.covoits.map((covoit, index) => {
                       return <tr>
-                          <td>Baptiste Garcin</td>
+                          <td>{covoit.driver}</td>
                           <td>{covoit.passengers}</td>
                           <td>{covoit.date}</td>
                       </tr>

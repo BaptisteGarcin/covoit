@@ -55,29 +55,6 @@ const uiConfig = {
     }
 };
 
-
-function guidGenerator() {
-    /**
-     * @return {string}
-     */
-    let S4 = function () {
-        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-    };
-    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-}
-
-function addMockDataToFirebase(nbMocks, subs) {
-    while (nbMocks > 0) {
-        db.collection("users")
-            .doc(guidGenerator())
-            .set({
-                //Add sex ?
-                subscriptions: subs.slice(Math.floor(Math.random() * subs.length), Math.floor(Math.random() * subs.length))
-            });
-        nbMocks--;
-    }
-}
-
 class App extends React.Component {
     state = {
         isSignedIn: false,
@@ -104,6 +81,7 @@ class App extends React.Component {
         //Send data to firebase
         db.collection("covoits")
             .add({
+                driver: firebase.auth().currentUser.displayName,
                 passengers: this.state.selectedPassengers,
                 date: this.state.date
             }).then(() => {

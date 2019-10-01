@@ -4,10 +4,10 @@ import './FloatingButton.scss';
 export default class FloatingButton extends React.Component {
     render() {
         return (
-            <div>
-                <button className="float" onClick={() => this.props.click()}>
-                    +
-                </button>
+            <div className="row">
+                <div className="float">
+                    <span>+</span>
+                </div>
             </div>
         );
     }

@@ -1,4 +1,6 @@
 import React from "react";
+import shortid from 'shortid';
+
 import './DrivingHistory.scss';
 
 export default class DrivingHistory extends React.Component {
@@ -21,7 +23,7 @@ export default class DrivingHistory extends React.Component {
                         <th>Date</th>
                     </tr>
                     {this.state.covoits.map((covoit, index) => {
-                      return <tr>
+                      return <tr key={shortid.generate()}>
                           <td>{covoit.driver}</td>
                           <td>{covoit.passengers}</td>
                           <td>{covoit.date}</td>

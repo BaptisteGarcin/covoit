@@ -1,5 +1,6 @@
 import React from "react";
 import './Passengers.scss'
+import shortid from "shortid";
 
 export default class Passengers extends React.Component {
     constructor(props) {
@@ -11,10 +12,8 @@ export default class Passengers extends React.Component {
         };
     }
 
-
-
     handleClick(name) {
-        console.log(name)
+        //TODO : enlarge radio button to the div
         //this.props.onChange(this.props.id, val);
     }
 
@@ -29,7 +28,7 @@ export default class Passengers extends React.Component {
         return (
             <div className="flexRow">
                 {this.state.passengers.map((value, index) =>{
-                  return <div className="passenger" onClick={() => this.handleClick(value)}>
+                  return <div className="passenger" key={shortid.generate()} onClick={() => this.handleClick(value)}>
                       <p>{value}</p>
                       <input
                           type="checkbox"

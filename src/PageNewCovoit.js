@@ -9,7 +9,7 @@ export default class PageNewCovoit extends React.Component {
     render() {
         return (
             <div className="flexColumn">
-                <Passengers name={"test"}/>
+                <Passengers onChange={(selectedPassengers) => this.props.onChange(selectedPassengers)}/>
                 <DatePicker />
             </div>
         );

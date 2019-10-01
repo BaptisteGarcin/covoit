@@ -82,7 +82,7 @@ class App extends React.Component {
     state = {
         isSignedIn: false,
         isNewCovoit: false,
-        passengers: []
+        selectedPassengers: []
     };
 
     componentDidMount() {
@@ -109,8 +109,8 @@ class App extends React.Component {
             })
     }
 
-    setPassengers(){
-
+    setPassengers(selectedPassengers){
+        this.setState({selectedPassengers: selectedPassengers.keys()})
     }
 
     handleClick(){
@@ -138,7 +138,7 @@ class App extends React.Component {
                 {this.state.isSignedIn ? (
                     <div>
                         {this.state.isNewCovoit ?
-                            <PageNewCovoit />
+                            <PageNewCovoit onChange={(data) => this.setPassengers(data)}/>
                             :
                             <PageHistory />
                         }

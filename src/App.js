@@ -133,7 +133,10 @@ class App extends React.Component {
                             :
                             <PageHistory />
                         }
-                        <FloatingButton click={() => this.handleClick()}/>
+                        <FloatingButton
+                            text={`${this.state.isNewCovoit ? "Valider" : "+"} `}
+                            click={() => this.handleClick()}
+                        />
                     </div>
                 ) : (
                     <div>

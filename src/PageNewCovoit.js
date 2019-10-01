@@ -3,18 +3,14 @@ import React from "react";
 import Passengers from "./Passengers";
 import DatePicker from "./DatePicker";
 
+import './PageNewCovoit.scss'
 
-export default class PageHistory extends React.Component {
+export default class PageNewCovoit extends React.Component {
     render() {
         return (
-            <div>
+            <div className="flexRowSpaced">
                 <Passengers name={"test"}/>
                 <DatePicker />
-                <br /> <br />
-                <button onClick = {() => this.save()}>
-                    Valider
-                </button>
-                <br/><br />
             </div>
         );
     }

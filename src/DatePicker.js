@@ -3,7 +3,9 @@ import React from "react";
 export default class DatePicker extends React.Component {
     render() {
         return (
-            <input type="date" />
+            <div className="flexRow">
+                <input type="date"/>
+            </div>
         );
     }
 }

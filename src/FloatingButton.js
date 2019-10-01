@@ -5,8 +5,10 @@ export default class FloatingButton extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="float">
-                    <span>+</span>
+                <div
+                    className="float"
+                    onClick={this.props.click}>
+                    <span>{this.props.text}</span>
                 </div>
             </div>
         );

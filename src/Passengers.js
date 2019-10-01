@@ -2,29 +2,26 @@ import React from "react";
 import './Passengers.scss'
 
 export default class Passengers extends React.Component {
+    state = {
+        passengers: ["Fedy", "Flo", "Lucille", "Spencer", "Baptiste"],
+        selectedPassengers : []
+    };
+
+
+    handleClick(name) {
+        console.log(name)
+        //this.props.onChange(this.props.id, val);
+    }
+
     render() {
         return (
             <div className="flexRow">
-                <div className="passenger">
-                    <p>Fedy</p>
-                    <input type="radio" name="passenger" value="Bike"/>
-                </div>
-                <div className="passenger">
-                    <p>Flo</p>
-                    <input type="radio" name="passenger" value="Bike"/>
-                </div>
-                <div className="passenger">
-                    <p>Lucille</p>
-                    <input type="radio" name="passenger" value="Bike"/>
-                </div>
-                <div className="passenger">
-                    <p>Spencer</p>
-                    <input type="radio" name="passenger" value="Bike"/>
-                </div>
-                <div className="passenger">
-                    <p>Baptiste</p>
-                    <input type="radio" name="passenger" value="Bike"/>
-                </div>
+                {this.state.passengers.map((value, index) =>{
+                  return <div className="passenger" onClick={() => this.handleClick(value)}>
+                      <p>{value}</p>
+                      <input type="checkbox" name="passenger" value={value}/>
+                  </div>
+                })}
             </div>
         );
     }

@@ -81,7 +81,8 @@ function addMockDataToFirebase(nbMocks, subs) {
 class App extends React.Component {
     state = {
         isSignedIn: false,
-        isNewCovoit: false
+        isNewCovoit: false,
+        passengers: []
     };
 
     componentDidMount() {
@@ -108,8 +109,16 @@ class App extends React.Component {
             })
     }
 
+    setPassengers(){
+
+    }
+
     handleClick(){
-        this.setState({isNewCovoit : true})
+        if(this.state.isNewCovoit){
+            this.save()
+        }
+        else
+            this.setState({isNewCovoit : true})
     }
 
     render() {
@@ -135,7 +144,7 @@ class App extends React.Component {
                         }
                         <FloatingButton
                             text={`${this.state.isNewCovoit ? "Valider" : "+"} `}
-                            click={() => this.handleClick()}
+                            onClick={(data) => this.handleClick(data)}
                         />
                     </div>
                 ) : (

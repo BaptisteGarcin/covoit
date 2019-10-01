@@ -114,7 +114,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div style={{overflow: 'auto'}}>
+            <div style={{paddingTop: '10px'}}>
                 <div style={{display: 'inline-block', width:'100%'}}>
                     <h1>Covoit App</h1>
                     {this.state.isNewCovoit &&

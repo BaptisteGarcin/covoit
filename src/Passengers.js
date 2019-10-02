@@ -29,14 +29,18 @@ export default class Passengers extends React.Component {
             <div className="flexRow">
                 {this.state.passengers.map((value, index) =>{
                   return <div className="passenger" key={shortid.generate()} onClick={() => this.handleClick(value)}>
-                      <p>{value}</p>
-                      <input
-                          type="checkbox"
-                          name="passenger"
-                          value={value}
-                          checked={this.state.selectedPassengers.get(value) ? this.state.selectedPassengers.get(value) : false}
-                          onChange={(e) => this.handleChange(e)}
-                      />
+                      <div className="flexRow">
+                          <p>{value}</p>
+                      </div>
+                      <div className="flexRow">
+                        <input
+                            type="checkbox"
+                            name="passenger"
+                            value={value}
+                            checked={this.state.selectedPassengers.get(value) ? this.state.selectedPassengers.get(value) : false}
+                            onChange={(e) => this.handleChange(e)}
+                        />
+                      </div>
                   </div>
                 })}
             </div>

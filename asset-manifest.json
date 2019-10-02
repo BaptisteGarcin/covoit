@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/covoit/static/css/main.e2beec15.chunk.css",
-    "main.js": "/covoit/static/js/main.88742016.chunk.js",
-    "main.js.map": "/covoit/static/js/main.88742016.chunk.js.map",
+    "main.js": "/covoit/static/js/main.d187dde1.chunk.js",
+    "main.js.map": "/covoit/static/js/main.d187dde1.chunk.js.map",
     "runtime~main.js": "/covoit/static/js/runtime~main.e212bf09.js",
     "runtime~main.js.map": "/covoit/static/js/runtime~main.e212bf09.js.map",
     "static/js/2.331fd6bb.chunk.js": "/covoit/static/js/2.331fd6bb.chunk.js",
     "static/js/2.331fd6bb.chunk.js.map": "/covoit/static/js/2.331fd6bb.chunk.js.map",
     "index.html": "/covoit/index.html",
-    "precache-manifest.08dd7644e6c586ba084332d944db1321.js": "/covoit/precache-manifest.08dd7644e6c586ba084332d944db1321.js",
+    "precache-manifest.baabd8e7e607097f923e8a21a56a7606.js": "/covoit/precache-manifest.baabd8e7e607097f923e8a21a56a7606.js",
     "service-worker.js": "/covoit/service-worker.js",
     "static/css/main.e2beec15.chunk.css.map": "/covoit/static/css/main.e2beec15.chunk.css.map"
   }

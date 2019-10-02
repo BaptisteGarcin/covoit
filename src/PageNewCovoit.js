@@ -8,7 +8,7 @@ import './PageNewCovoit.scss'
 export default class PageNewCovoit extends React.Component {
     render() {
         return (
-            <div className="flexColumn">
+            <div>
                 <Passengers onChange={(selectedPassengers) => this.props.setPassengers(selectedPassengers)}/>
                 <DatePicker onChange={(date) => this.props.setDate(date)}/>
             </div>

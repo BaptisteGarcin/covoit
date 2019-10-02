@@ -16,7 +16,7 @@ h1 {
     "headerLeft header headerRight"
     "nav article ads"
     "footerLeft footer footerRight";
-  grid-template-rows: 80px 1fr 70px;  
+  grid-template-rows: 80px 1fr 130px;  
   grid-template-columns: 20% 1fr 15%;
   grid-row-gap: 10px;
   grid-column-gap: 10px;
@@ -25,12 +25,15 @@ h1 {
   align-items: center;
   justify-items: center;
   }  
-header, footer, article, nav, div {
-  background: gold;
-  }
-#pageHeader {
+
+#header {
   grid-area: header;
   }
+
+#headerRight {
+  grid-area: headerRight;
+}
+
 #pageFooter {
   grid-area: footer;
   }

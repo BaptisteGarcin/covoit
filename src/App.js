@@ -122,11 +122,46 @@ class App extends React.Component {
 
     render() {
         return (<div class="grid">
-            <header id="pageHeader">Header</header>
-            <article id="mainArticle">Article</article>
+            <div id="header">                   
+                <h1>Covoit App</h1>
+            </div>
+            <div id="headerRight">
+                {this.state.isNewCovoit &&
+                            <button
+                                
+                                onClick={() => firebase.auth().signOut()}
+                            >
+                                Sign-out
+                            </button>
+                }
+            </div>
+            <article id="mainArticle">
+                {this.state.isSignedIn ? (
+                    <div>
+                        {this.state.isNewCovoit ?
+                            <PageNewCovoit
+                                setPassengers={(data) => this.setPassengers(data)}
+                                setDate={(data) => this.setDate(data)}
+                            />
+                            :
+                            <PageHistory covoits={this.getAllCovoits()}/>
+                        }
+                    </div>
+                ) : (
+                    <StyledFirebaseAuth
+                        uiConfig={uiConfig}
+                        firebaseAuth={firebase.auth()}
+                    />
+                )}
+            </article>
             <nav id="mainNav">Nav</nav>
             <div id="siteAds">Ads</div>
-            <footer id="pageFooter">Footer</footer>
+            <footer id="pageFooter">
+                <FloatingButton
+                            text={`${this.state.isNewCovoit ? "Valider" : "+"} `}
+                            onClick={(data) => {this.handleClick(data)}}
+                />
+            </footer>
       </div>
         );
         // return (
@@ -141,30 +176,30 @@ class App extends React.Component {
         //             </button>}
         //         </div>
         //         <br/> <br/>
-        //         {this.state.isSignedIn ? (
-        //             <div id="mainArticle">
-        //                 {this.state.isNewCovoit ?
-        //                     <PageNewCovoit
-        //                         setPassengers={(data) => this.setPassengers(data)}
-        //                         setDate={(data) => this.setDate(data)}
-        //                     />
-        //                     :
-        //                     <PageHistory covoits={this.getAllCovoits()}/>
-        //                 }
-        //                 <FloatingButton
-        //                     id="pageFooter"
-        //                     text={`${this.state.isNewCovoit ? "Valider" : "+"} `}
-        //                     onClick={(data) => {this.handleClick(data)}}
-        //                 />
-        //             </div>
-        //         ) : (
-        //             <div id="mainArticle">
-        //                 <StyledFirebaseAuth
-        //                     uiConfig={uiConfig}
-        //                     firebaseAuth={firebase.auth()}
-        //                 />
-        //             </div>
-        //         )}
+                // {this.state.isSignedIn ? (
+                //     <div id="mainArticle">
+                //         {this.state.isNewCovoit ?
+                //             <PageNewCovoit
+                //                 setPassengers={(data) => this.setPassengers(data)}
+                //                 setDate={(data) => this.setDate(data)}
+                //             />
+                //             :
+                //             <PageHistory covoits={this.getAllCovoits()}/>
+                //         }
+                //         <FloatingButton
+                //             id="pageFooter"
+                //             text={`${this.state.isNewCovoit ? "Valider" : "+"} `}
+                //             onClick={(data) => {this.handleClick(data)}}
+                //         />
+                //     </div>
+                // ) : (
+                //     <div id="mainArticle">
+                //         <StyledFirebaseAuth
+                //             uiConfig={uiConfig}
+                //             firebaseAuth={firebase.auth()}
+                //         />
+                //     </div>
+                // )}
         //     </div>
         // );
     }

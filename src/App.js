@@ -121,44 +121,52 @@ class App extends React.Component {
     }
 
     render() {
-        return (
-            <div style={{paddingTop: '10px'}}>
-                <div style={{display: 'inline-block', width:'100%'}}>
-                    <h1>Covoit App</h1>
-                    {this.state.isNewCovoit &&
-                    <button
-                        style={{float: 'right'}}
-                        onClick={() => firebase.auth().signOut()}
-                    >
-                        Sign-out
-                    </button>}
-                </div>
-                <br/> <br/>
-                {this.state.isSignedIn ? (
-                    <div>
-                        {this.state.isNewCovoit ?
-                            <PageNewCovoit
-                                setPassengers={(data) => this.setPassengers(data)}
-                                setDate={(data) => this.setDate(data)}
-                            />
-                            :
-                            <PageHistory covoits={this.getAllCovoits()}/>
-                        }
-                        <FloatingButton
-                            text={`${this.state.isNewCovoit ? "Valider" : "+"} `}
-                            onClick={(data) => {this.handleClick(data)}}
-                        />
-                    </div>
-                ) : (
-                    <div>
-                        <StyledFirebaseAuth
-                            uiConfig={uiConfig}
-                            firebaseAuth={firebase.auth()}
-                        />
-                    </div>
-                )}
-            </div>
+        return (<div class="grid">
+            <header id="pageHeader">Header</header>
+            <article id="mainArticle">Article</article>
+            <nav id="mainNav">Nav</nav>
+            <div id="siteAds">Ads</div>
+            <footer id="pageFooter">Footer</footer>
+      </div>
         );
+        // return (
+        //     <div style={{paddingTop: '10px'}}>
+        //         <div id="pageHeader">
+        //             <h1>Covoit App</h1>
+        //             {this.state.isNewCovoit &&
+        //             <button
+        //                 onClick={() => firebase.auth().signOut()}
+        //             >
+        //                 Sign-out
+        //             </button>}
+        //         </div>
+        //         <br/> <br/>
+        //         {this.state.isSignedIn ? (
+        //             <div id="mainArticle">
+        //                 {this.state.isNewCovoit ?
+        //                     <PageNewCovoit
+        //                         setPassengers={(data) => this.setPassengers(data)}
+        //                         setDate={(data) => this.setDate(data)}
+        //                     />
+        //                     :
+        //                     <PageHistory covoits={this.getAllCovoits()}/>
+        //                 }
+        //                 <FloatingButton
+        //                     id="pageFooter"
+        //                     text={`${this.state.isNewCovoit ? "Valider" : "+"} `}
+        //                     onClick={(data) => {this.handleClick(data)}}
+        //                 />
+        //             </div>
+        //         ) : (
+        //             <div id="mainArticle">
+        //                 <StyledFirebaseAuth
+        //                     uiConfig={uiConfig}
+        //                     firebaseAuth={firebase.auth()}
+        //                 />
+        //             </div>
+        //         )}
+        //     </div>
+        // );
     }
 }
 

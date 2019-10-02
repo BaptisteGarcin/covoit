@@ -15,6 +15,7 @@ export default class DrivingHistory extends React.Component {
 
     render() {
         return (
+            <div>
             <table>
                 <tbody>
                     <tr>
@@ -31,6 +32,7 @@ export default class DrivingHistory extends React.Component {
                     })}
                 </tbody>
             </table>
+            </div>
         );
     }
 }

@@ -1,17 +1,3 @@
-/* These styles make the body full-height */
-html,
-body {
-  height: 100%;
-}
-
-/* These styles disable body scrolling if you are using <ScrollView> */
-body {
-  overflow: hidden;
-  font-family: 'Poppins', sans-serif;
-  width: 90%;
-  margin: auto;
-}
-
 *,
 *::before,
 *::after{
@@ -24,17 +10,36 @@ h1 {
   text-align: center;
 }
 
-/* These styles make the root element full-height */
-#root {
-  display: flex;
-  height: 100%;
-}
-
-.flexRow {
-  display: flex;
-  flex-wrap: wrap;
+.grid { 
+  display: grid;
+  grid-template-areas: 
+    "headerLeft header headerRight"
+    "nav article ads"
+    "footerLeft footer footerRight";
+  grid-template-rows: 80px 1fr 70px;  
+  grid-template-columns: 20% 1fr 15%;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  height: 100vh;
+  margin: 0;
   align-items: center;
-  flex-direction: row;
-  max-height: 100vh;
-  justify-content: center;
-}
+  justify-items: center;
+  }  
+header, footer, article, nav, div {
+  background: gold;
+  }
+#pageHeader {
+  grid-area: header;
+  }
+#pageFooter {
+  grid-area: footer;
+  }
+#mainArticle { 
+  grid-area: article;      
+  }
+#mainNav { 
+  grid-area: nav; 
+  }
+#siteAds { 
+  grid-area: ads; 
+  } 

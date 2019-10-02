@@ -10,13 +10,29 @@ h1 {
   text-align: center;
 }
 
+.flexRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: row;
+  max-height: 100vh;
+  justify-content: center;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  justify-content: space-around;
+}
+
 .grid { 
   display: grid;
   grid-template-areas: 
     "headerLeft header headerRight"
     "nav article ads"
     "footerLeft footer footerRight";
-  grid-template-rows: 80px 1fr 130px;  
+  grid-template-rows: 20% 1fr 15%;  
   grid-template-columns: 20% 1fr 15%;
   grid-row-gap: 10px;
   grid-column-gap: 10px;
@@ -38,6 +54,7 @@ h1 {
   grid-area: footer;
   }
 #mainArticle { 
+  width: 100%;
   grid-area: article;      
   }
 #mainNav { 

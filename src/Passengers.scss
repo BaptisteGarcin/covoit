@@ -1,20 +1,13 @@
-@import "global";
 
 .passenger {
-  display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-around;
-  min-height: 25vw;
+  min-height: 10vw;
   text-align: center;
   margin: 10px;
   border: 1px solid gray;
   box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.3);
   max-width: 28vw;
   width: 100%;
-}
-
-p, input {
-  text-align: center;
-  margin: 0 auto;
 }

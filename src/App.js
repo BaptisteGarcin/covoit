@@ -135,7 +135,7 @@ class App extends React.Component {
                             </button>
                 }
             </div>
-            <article id="mainArticle">
+            <div id="mainArticle">
                 {this.state.isSignedIn ? (
                     <div>
                         {this.state.isNewCovoit ?
@@ -153,7 +153,7 @@ class App extends React.Component {
                         firebaseAuth={firebase.auth()}
                     />
                 )}
-            </article>
+            </div>
             <nav id="mainNav">Nav</nav>
             <div id="siteAds">Ads</div>
             <footer id="pageFooter">

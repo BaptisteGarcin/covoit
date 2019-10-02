@@ -15,7 +15,7 @@ export default class DrivingHistory extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="mainArticleTop">
             <table>
                 <tbody>
                     <tr>

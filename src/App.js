@@ -121,7 +121,7 @@ class App extends React.Component {
     }
 
     render() {
-        return (<div class="grid">
+        return (<div className="grid">
             <div id="header">                   
                 <h1>Covoit App</h1>
             </div>
@@ -137,16 +137,13 @@ class App extends React.Component {
             </div>
             <div id="mainArticle">
                 {this.state.isSignedIn ? (
-                    <div>
-                        {this.state.isNewCovoit ?
-                            <PageNewCovoit
-                                setPassengers={(data) => this.setPassengers(data)}
-                                setDate={(data) => this.setDate(data)}
-                            />
-                            :
-                            <PageHistory covoits={this.getAllCovoits()}/>
-                        }
-                    </div>
+                    this.state.isNewCovoit ?
+                        <PageNewCovoit
+                            setPassengers={(data) => this.setPassengers(data)}
+                            setDate={(data) => this.setDate(data)}
+                        />
+                        :
+                        <PageHistory covoits={this.getAllCovoits()}/>
                 ) : (
                     <StyledFirebaseAuth
                         uiConfig={uiConfig}

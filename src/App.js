@@ -48,7 +48,8 @@ const uiConfig = {
         {
             provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             scopes: config.scopes
-        }
+        },
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
     ],
     callbacks: {
         signInSuccessWithAuthResult: () => false
@@ -128,7 +129,6 @@ class App extends React.Component {
             <div id="headerRight">
                 {this.state.isNewCovoit &&
                             <button
-                                
                                 onClick={() => firebase.auth().signOut()}
                             >
                                 Sign-out
@@ -161,44 +161,6 @@ class App extends React.Component {
             </footer>
       </div>
         );
-        // return (
-        //     <div style={{paddingTop: '10px'}}>
-        //         <div id="pageHeader">
-        //             <h1>Covoit App</h1>
-        //             {this.state.isNewCovoit &&
-        //             <button
-        //                 onClick={() => firebase.auth().signOut()}
-        //             >
-        //                 Sign-out
-        //             </button>}
-        //         </div>
-        //         <br/> <br/>
-                // {this.state.isSignedIn ? (
-                //     <div id="mainArticle">
-                //         {this.state.isNewCovoit ?
-                //             <PageNewCovoit
-                //                 setPassengers={(data) => this.setPassengers(data)}
-                //                 setDate={(data) => this.setDate(data)}
-                //             />
-                //             :
-                //             <PageHistory covoits={this.getAllCovoits()}/>
-                //         }
-                //         <FloatingButton
-                //             id="pageFooter"
-                //             text={`${this.state.isNewCovoit ? "Valider" : "+"} `}
-                //             onClick={(data) => {this.handleClick(data)}}
-                //         />
-                //     </div>
-                // ) : (
-                //     <div id="mainArticle">
-                //         <StyledFirebaseAuth
-                //             uiConfig={uiConfig}
-                //             firebaseAuth={firebase.auth()}
-                //         />
-                //     </div>
-                // )}
-        //     </div>
-        // );
     }
 }
 

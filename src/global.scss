@@ -33,15 +33,23 @@ h1 {
     "headerLeft header headerRight"
     "nav article ads"
     "footerLeft footer footerRight";
-  grid-template-rows: 15% 70% 15%;  
+  grid-template-rows: 14% 70% 14%;  
   grid-template-columns: 15% 70% 15%;
-  grid-row-gap: 10px;
-  grid-column-gap: 10px;
+  grid-row-gap: 2%;
   height: 100vh;
   margin: 0;
   align-items: center;
   justify-items: center;
   }  
+
+
+@media all and (max-width: 575px) {
+  .grid { 
+    grid-template-rows: 14% 63% 14%;  
+    grid-template-columns: 10% 80% 10%;
+    grid-row-gap: 0%;
+  }
+}
 
 #header {
   grid-area: header;

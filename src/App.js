@@ -151,8 +151,8 @@ class App extends React.Component {
                     />
                 )}
             </div>
-            <nav id="mainNav"></nav>
-            <div id="siteAds"></div>
+            <nav id="mainNav">LeftSide</nav>
+            <div id="siteAds">RightSide</div>
             <footer id="pageFooter">
                 <FloatingButton
                             text={`${this.state.isNewCovoit ? "Valider" : "+"} `}

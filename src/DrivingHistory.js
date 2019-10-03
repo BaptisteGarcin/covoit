@@ -15,7 +15,7 @@ export default class DrivingHistory extends React.Component {
 
     render() {
         return (
-            <div id="mainArticleTop">
+            <div style={{overflowX: 'auto'}}>
             <table>
                 <tbody>
                     <tr>
@@ -26,7 +26,11 @@ export default class DrivingHistory extends React.Component {
                     {this.state.covoits.map((covoit, index) => {
                       return <tr key={shortid.generate()}>
                           <td>{covoit.driver}</td>
-                          <td>{covoit.passengers}</td>
+                          <td>
+                          {covoit.passengers.map((passenger, index) => {
+                             return <p>{passenger}</p>
+                          })}
+                          </td>
                           <td>{covoit.date}</td>
                       </tr>
                     })}

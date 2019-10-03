@@ -33,8 +33,8 @@ h1 {
     "headerLeft header headerRight"
     "nav article ads"
     "footerLeft footer footerRight";
-  grid-template-rows: 20% 1fr 15%;  
-  grid-template-columns: 20% 1fr 15%;
+  grid-template-rows: 15% 70% 15%;  
+  grid-template-columns: 15% 70% 15%;
   grid-row-gap: 10px;
   grid-column-gap: 10px;
   height: 100vh;

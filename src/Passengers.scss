@@ -12,3 +12,9 @@
   max-width: 28vw;
   width: 100%;
 }
+
+@media all and (min-width: 1400px) {
+  .passenger {
+    max-width: 19vw;
+  }
+}

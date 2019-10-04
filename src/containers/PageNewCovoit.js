@@ -1,7 +1,7 @@
 import React from "react";
 
-import Passengers from "./Passengers";
-import DatePicker from "./DatePicker";
+import Passengers from "../components/Passengers";
+import DatePicker from "../components/DatePicker";
 
 import './PageNewCovoit.scss'
 

@@ -1,7 +1,7 @@
 // Import FirebaseAuth and firebase.
 import React from "react";
 import firebase from "firebase";
-import "firebase/firestore";
+import "firebase/empty-import";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 
@@ -10,8 +10,8 @@ import Passengers from "./Passengers"
 import './global.scss'
 import DatePicker from "./DatePicker";
 import FloatingButton from "./FloatingButton";
-import PageNewCovoit from "./PageNewCovoit";
-import PageHistory from "./PageHistory";
+import PageNewCovoit from "./containers/PageNewCovoit";
+import PageHistory from "./containers/PageHistory";
 
 
 // Configure Firebase.
@@ -123,7 +123,7 @@ class App extends React.Component {
 
     render() {
         return (<div className="grid">
-            <div id="header">                   
+            <div id="header">
                 <h1>Covoit App</h1>
             </div>
             <div id="headerRight">

@@ -21,7 +21,9 @@
     "shortid": "^2.2.15",
     "yarn": "^1.19.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

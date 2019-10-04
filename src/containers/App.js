@@ -4,14 +4,14 @@ import firebase from "firebase";
 import "firebase/empty-import";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
-
-import DrivingHistory from "./DrivingHistory";
-import Passengers from "./Passengers"
 import './global.scss'
-import DatePicker from "./DatePicker";
-import FloatingButton from "./FloatingButton";
-import PageNewCovoit from "./containers/PageNewCovoit";
-import PageHistory from "./containers/PageHistory";
+
+import FloatingButton from "../components/FloatingButton";
+import PageNewCovoit from "./PageNewCovoit";
+import PageHistory from "./PageHistory";
+
+const newCovoit = firebase.functions().httpsCallable('newCovoit');
+const getAllCovoits = firebase.functions().httpsCallable('getAllCovoits');
 
 
 // Configure Firebase.
@@ -79,13 +79,12 @@ class App extends React.Component {
     }
 
     save(){
-        //Send data to firebase
-        db.collection("covoits")
-            .add({
-                driver: firebase.auth().currentUser.displayName,
-                passengers: this.state.selectedPassengers,
-                date: this.state.date
-            }).then(() => {
+        const data = {
+            passengers: this.state.selectedPassengers,
+            date: this.state.date
+        };
+
+        newCovoit(data).then(() => {
                 this.setState({isNewCovoit: false})
             }).catch(err => {
                 console.error('Error adding document', err);
@@ -93,7 +92,7 @@ class App extends React.Component {
     }
 
     getAllCovoits() {
-        const covoits = db.collection('covoits').get()
+        const covoits = getCovoits()
             .then(snapshot => {
                 return snapshot.docs.map(doc => {
                     return doc.data();

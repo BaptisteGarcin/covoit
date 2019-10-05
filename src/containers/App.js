@@ -1,18 +1,17 @@
 // Import FirebaseAuth and firebase.
 import React from "react";
-import firebase from "firebase";
-import "firebase/empty-import";
+import firebase from 'firebase/app'
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
-import './global.scss'
+import '../global.scss'
 
 import FloatingButton from "../components/FloatingButton";
 import PageNewCovoit from "./PageNewCovoit";
 import PageHistory from "./PageHistory";
 
-const newCovoit = firebase.functions().httpsCallable('newCovoit');
-const getAllCovoits = firebase.functions().httpsCallable('getAllCovoits');
-
+import 'firebase/auth';        // for authentication
+import 'firebase/firestore';   // for cloud firestore
+import 'firebase/functions';
 
 // Configure Firebase.
 const config = {
@@ -33,9 +32,10 @@ const config = {
     ]
 };
 
-
 firebase.initializeApp(config);
-const db = firebase.firestore();
+
+const newCovoit = firebase.app().functions('europe-west2').httpsCallable('newCovoit');
+const getAllCovoits = firebase.app().functions('europe-west2').httpsCallable('getAllCovoits');
 
 // Configure FirebaseUI.
 const uiConfig = {
@@ -61,13 +61,15 @@ class App extends React.Component {
         isSignedIn: false,
         isNewCovoit: false,
         selectedPassengers: [],
-        date: undefined
+        date: undefined,
+        covoits: []
     };
 
     componentDidMount() {
         this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 this.setState({isSignedIn: true});
+                this.getAllCovoits()
             } else {
                 this.setState({isSignedIn: false});
             }
@@ -79,29 +81,25 @@ class App extends React.Component {
     }
 
     save(){
-        const data = {
+        const covoit = {
+            driver: firebase.auth().currentUser.displayName,
             passengers: this.state.selectedPassengers,
             date: this.state.date
         };
 
-        newCovoit(data).then(() => {
-                this.setState({isNewCovoit: false})
+        newCovoit(covoit).then(() => {
+                this.setState({isNewCovoit: false, covoits: [covoit, ...this.state.covoits]})
             }).catch(err => {
                 console.error('Error adding document', err);
             });
     }
 
     getAllCovoits() {
-        const covoits = getCovoits()
-            .then(snapshot => {
-                return snapshot.docs.map(doc => {
-                    return doc.data();
-                });
-            }).catch(err => {
-                console.error('Error getting documents', err);
+        getAllCovoits()
+            .then(res => {
+                console.log(res.data)
+                this.setState({covoits : res.data})
             });
-
-        return covoits
     }
 
     setPassengers(selectedPassengers){
@@ -142,7 +140,7 @@ class App extends React.Component {
                             setDate={(data) => this.setDate(data)}
                         />
                         :
-                        <PageHistory covoits={this.getAllCovoits()}/>
+                        <PageHistory covoits={this.state.covoits}/>
                 ) : (
                     <StyledFirebaseAuth
                         uiConfig={uiConfig}

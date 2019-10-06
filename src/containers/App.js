@@ -178,22 +178,24 @@ class App extends React.Component {
             <div id="mainNav"></div>
             <div id="siteAds"></div>
             <footer id="pageFooter">
-                <div className="flexRow">
-                    {!this.state.isFindDriver &&
-                        <FloatingButton
-                        color='#0C9'
-                        text={`${this.state.isNewCovoit ? "Valider" : "+"} `}
-                                onClick={(data) => {this.handleNewCovoit(data)}}
-                        />
-                    }
-                    {!this.state.isNewCovoit &&
-                        <FloatingButton
-                            color='#314acc'
-                            text={`${this.state.isFindDriver ? "Spin" : "Driver?"} `}
-                            onClick={(data) => {this.handleNextDriver()}}
-                        />
-                    }
-                </div>
+                {this.state.isSignedIn &&
+                    <div className="flexRow">
+                        {!this.state.isFindDriver &&
+                            <FloatingButton
+                            color='#0C9'
+                            text={`${this.state.isNewCovoit ? "Valider" : "+"} `}
+                                    onClick={(data) => {this.handleNewCovoit(data)}}
+                            />
+                        }
+                        {!this.state.isNewCovoit &&
+                            <FloatingButton
+                                color='#314acc'
+                                text={`${this.state.isFindDriver ? "Spin" : "Driver?"} `}
+                                onClick={(data) => {this.handleNextDriver()}}
+                            />
+                        }
+                    </div>
+                }
             </footer>
       </div>
         );

@@ -12,6 +12,7 @@ import PageHistory from "./PageHistory";
 import 'firebase/auth';        // for authentication
 import 'firebase/firestore';   // for cloud firestore
 import 'firebase/functions';
+import PageNextDriver from "./PageNextDriver";
 
 // Configure Firebase.
 const config = {
@@ -62,7 +63,8 @@ class App extends React.Component {
         isNewCovoit: false,
         selectedPassengers: [],
         date: undefined,
-        covoits: []
+        covoits: [],
+        isFindDriver: false
     };
 
     componentDidMount() {
@@ -110,12 +112,35 @@ class App extends React.Component {
         this.setState({date: date})
     }
 
-    handleClick(){
+    handleNewCovoit(){
         if(this.state.isNewCovoit){
             this.save()
         }
         else
             this.setState({isNewCovoit : true})
+    }
+
+    spin(){
+        console.log("spin")
+    }
+
+    handleNextDriver() {
+        if (this.state.isFindDriver) {
+            this.spin()
+        } else
+            this.setState({isFindDriver: true})
+    }
+
+    renderMain() {
+        if (this.state.isNewCovoit && !this.state.isFindDriver)
+                return <PageNewCovoit
+                    setPassengers={(data) => this.setPassengers(data)}
+                    setDate={(data) => this.setDate(data)}
+                />;
+        else if (!this.state.isNewCovoit && this.state.isFindDriver)
+            return <PageNextDriver setPassengers={(data) => this.setPassengers(data)}/>;
+        else
+            return <PageHistory covoits={this.state.covoits}/>
     }
 
     render() {
@@ -133,28 +158,42 @@ class App extends React.Component {
                 }
             </div>
             <div id="mainArticle">
-                {this.state.isSignedIn ? (
-                    this.state.isNewCovoit ?
+                {this.state.isSignedIn ?
+                    this.renderMain()
+                    /*this.state.isNewCovoit && !this.state.isFindDriver ?
                         <PageNewCovoit
                             setPassengers={(data) => this.setPassengers(data)}
                             setDate={(data) => this.setDate(data)}
                         />
                         :
                         <PageHistory covoits={this.state.covoits}/>
-                ) : (
+                    this.state.isFindDriver && <p>test</p>*/
+                 :
                     <StyledFirebaseAuth
                         uiConfig={uiConfig}
                         firebaseAuth={firebase.auth()}
                     />
-                )}
+                }
             </div>
             <div id="mainNav"></div>
             <div id="siteAds"></div>
             <footer id="pageFooter">
-                <FloatingButton
-                            text={`${this.state.isNewCovoit ? "Valider" : "+"} `}
-                            onClick={(data) => {this.handleClick(data)}}
-                />
+                <div className="flexRow">
+                    {!this.state.isFindDriver &&
+                        <FloatingButton
+                        color='#0C9'
+                        text={`${this.state.isNewCovoit ? "Valider" : "+"} `}
+                                onClick={(data) => {this.handleNewCovoit(data)}}
+                        />
+                    }
+                    {!this.state.isNewCovoit &&
+                        <FloatingButton
+                            color='#314acc'
+                            text={`${this.state.isFindDriver ? "Spin" : "Driver?"} `}
+                            onClick={(data) => {this.handleNextDriver()}}
+                        />
+                    }
+                </div>
             </footer>
       </div>
         );

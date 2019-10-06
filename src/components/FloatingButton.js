@@ -5,6 +5,7 @@ export default class FloatingButton extends React.Component {
     render() {
         return (
             <div
+                style={{backgroundColor: `${this.props.color}`}}
                  className="float"
                  onClick={this.props.onClick}
                  >

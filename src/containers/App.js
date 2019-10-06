@@ -160,14 +160,6 @@ class App extends React.Component {
             <div id="mainArticle">
                 {this.state.isSignedIn ?
                     this.renderMain()
-                    /*this.state.isNewCovoit && !this.state.isFindDriver ?
-                        <PageNewCovoit
-                            setPassengers={(data) => this.setPassengers(data)}
-                            setDate={(data) => this.setDate(data)}
-                        />
-                        :
-                        <PageHistory covoits={this.state.covoits}/>
-                    this.state.isFindDriver && <p>test</p>*/
                  :
                     <StyledFirebaseAuth
                         uiConfig={uiConfig}

@@ -99,13 +99,12 @@ class App extends React.Component {
     getAllCovoits() {
         getAllCovoits()
             .then(res => {
-                console.log(res.data)
                 this.setState({covoits : res.data})
             });
     }
 
     setPassengers(selectedPassengers){
-        this.setState({selectedPassengers: [...selectedPassengers.keys()]})
+        this.setState({selectedPassengers: [...selectedPassengers]})
     }
 
     setDate(date) {
@@ -121,9 +120,20 @@ class App extends React.Component {
     }
 
     spin(){
-        console.log("spin")
-        //this.state.selectedPassengers +
+        const driverOccurences = this.state.covoits.filter(covoit => {
+            const group = [...covoit.passengers, covoit.driver]
+            if(group.length === this.state.selectedPassengers.length){
+                const areEqual = group.every(value => this.state.selectedPassengers.includes(value))
+                if(areEqual)
+                    return true;
+                else
+                    return false;
+            }
+            return false;
+        }).map(covoit => covoit.driver)
+          .reduce((prev, curr) => (prev[curr] = ++prev[curr] || 1, prev), {})
 
+       alert(JSON.stringify(driverOccurences))
     }
 
     handleNextDriver() {

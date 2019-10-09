@@ -7,10 +7,7 @@ export default class PageNextDriver extends React.Component {
     render() {
         return (
             <div className="flexColumn">
-{/*
                 <Passengers onChange={(selectedPassengers) => this.props.setPassengers(selectedPassengers)}/>
-*/}
-                <Wheel />
             </div>
         );
     }

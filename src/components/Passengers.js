@@ -21,7 +21,14 @@ export default class Passengers extends React.Component {
         const item = e.target.value;
         const isChecked = e.target.checked;
         this.setState(prevState => ({selectedPassengers: prevState.selectedPassengers.set(item, isChecked)}),
-            () => this.props.onChange(this.state.selectedPassengers));
+            () => {
+                let removeFalsy = [];
+                this.state.selectedPassengers.forEach((v, k) => {
+                    if(v)
+                        removeFalsy.push(k);
+                })
+                this.props.onChange(removeFalsy)
+            });
     }
 
     render() {

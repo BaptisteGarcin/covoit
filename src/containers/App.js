@@ -122,6 +122,8 @@ class App extends React.Component {
 
     spin(){
         console.log("spin")
+        //this.state.selectedPassengers +
+
     }
 
     handleNextDriver() {

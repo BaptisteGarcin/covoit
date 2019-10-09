@@ -7,7 +7,7 @@ export default class Passengers extends React.Component {
         super(props);
 
         this.state = {
-            passengers: ["Fedy", "Flo", "Lucille", "Spencer", "Baptiste"],
+            passengers: ["fedy salah", "florian pires", "lucille moise", "florian leblanc", "baptiste garcin"],
             selectedPassengers: new Map()
         };
     }

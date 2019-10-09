@@ -1,5 +1,7 @@
 import React from "react";
 import shortid from 'shortid';
+import moment from 'moment';
+import 'moment/locale/fr'
 
 import './DrivingHistory.scss';
 
@@ -22,7 +24,7 @@ export default class DrivingHistory extends React.Component {
                              return <p key={shortid.generate()}>{passenger}</p>
                           })}
                           </td>
-                          <td>{covoit.date}</td>
+                          <td>{moment(covoit.date).locale('fr').format('dddd LL')}</td>
                       </tr>
                     })}
                 </tbody>

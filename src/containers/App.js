@@ -84,7 +84,7 @@ class App extends React.Component {
 
     save(){
         const covoit = {
-            driver: firebase.auth().currentUser.displayName,
+            driver: firebase.auth().currentUser.displayName.toLowerCase(),
             passengers: this.state.selectedPassengers,
             date: this.state.date
         };
